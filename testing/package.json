@@ -1,8 +1,9 @@
 {
   "devDependencies": {
+    "@datashard/snapshot": "^2.2.0",
     "@faker-js/faker": "^7.6.0",
     "@testing-library/cypress": "^9.0.0",
-    "cypress": "^12.8.1",
+    "cypress": "^12.10.0",
     "cypress-email-results": "^1.8.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-plugin-api": "^2.10.3",
