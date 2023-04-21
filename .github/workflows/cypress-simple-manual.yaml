@@ -2,8 +2,6 @@
 # This is the simplest for of running the Cypress tests in Github actions
 name: e2e-simple
 on: [workflow_dispatch,repository_dispatch,push]
-branches:
-  - test
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
