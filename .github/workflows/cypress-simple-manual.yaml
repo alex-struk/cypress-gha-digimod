@@ -56,4 +56,4 @@ jobs:
           # Required sender full name (address can be skipped):
           from: Digimod # <user@example.com>
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed!
+          body: End-to-end tests failed on digital.gov.bc.ca
