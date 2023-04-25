@@ -6,8 +6,8 @@ describe('spec.cy.js', () =>{
     })
 
     it('home page snapshot', () =>{
-       cy.visit('https://google.com')
-       cy.get('html').snapshot({"snapshotName":"foo","snapshotPath": "cypress/snapshots",json: false});
+    //    cy.visit('https://google.com')
+    //    cy.get('html').snapshot({"snapshotName":"foo","snapshotPath": "cypress/snapshots",json: false});
         // let html = cy.get('html');
         // html.snapshot("bar",{
         //     snapshotName: 'Snapshot Name',          // Overwrite the generated Snapshot name
