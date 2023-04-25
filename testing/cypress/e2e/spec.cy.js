@@ -6,13 +6,12 @@ describe('spec.cy.js', () =>{
     })
 
     it('home page snapshot', () =>{
-    //    cy.visit('https://google.com')
-    //    cy.get('html').snapshot({"snapshotName":"foo","snapshotPath": "cypress/snapshots",json: false});
-        // let html = cy.get('html');
-        // html.snapshot("bar",{
-        //     snapshotName: 'Snapshot Name',          // Overwrite the generated Snapshot name
-        //     snapshotPath: 'cypress/snapshots', // Overwrite where the Snapshot should be stored
-        //     json: true                           // convert DOM elements into JSON
-        //   });
+        cy.request('/').its('body', {log: false}).then(text => {
+            cy.wrap({ html: text }).snapshot("test",{
+                snapshotName: 'Home',
+                snapshotPath: 'cypress/snapshots',
+                json: true                           
+              });
+          });
     })
 })
