@@ -26,7 +26,7 @@ jobs:
         # We need to force the install due to version checking  
           install-command: npm ci -f
           working-directory: testing
-          browser: chrome
+          browser: edge
       - name: Send email
         if: failure()
         uses: dawidd6/action-send-mail@v3.7.1
@@ -57,3 +57,4 @@ jobs:
           from: Digimod # <user@example.com>
           # Optional plain body:
           body: End-to-end tests failed on digital.gov.bc.ca
+          attachments: '/home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__/spec.cy.js home page screenshot #0.actual.png'
