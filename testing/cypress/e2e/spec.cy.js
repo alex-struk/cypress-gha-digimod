@@ -1,19 +1,19 @@
 
 
 describe('spec.cy.js', () =>{
-    it('should visit',()=>{
-        cy.visit('/')
-    })
+    // it('should visit',()=>{
+    //     cy.visit('/')
+    // })
 
-    it('home page snapshot', () =>{
-        cy.request('/').its('body', {log: false}).then(text => {
-            cy.wrap({ html: text }).snapshot("test",{
-                snapshotName: 'Home',
-                snapshotPath: 'cypress/snapshots',
-                json: true                           
-              });
-          });
-    })
+    // it('home page snapshot', () =>{
+    //     cy.request('/').its('body', {log: false}).then(text => {
+    //         cy.wrap({ html: text }).snapshot("test",{
+    //             snapshotName: 'Home',
+    //             snapshotPath: 'cypress/snapshots',
+    //             json: true                           
+    //           });
+    //       });
+    // })
 
     it('home page screenshot', () =>{
 
@@ -42,21 +42,15 @@ describe('spec.cy.js', () =>{
         //   });
 
         // cy.visit('https://github.com/bcgov/automated-testing/blob/main/.github/workflows/cypress-complex-auto.yaml');
-
-
-
-
-
-
-        // cy.visit('https://digital.gov.bc.ca/policies-standards/', {
-        //     onBeforeLoad(win) {
-        //         // Add a style element to the head of the document
-        //         const styleElement = win.document.createElement('style');
-        //         styleElement.innerHTML = 'html { scroll-behavior: auto !important; }';
-        //         win.document.head.appendChild(styleElement);
-        //     },
-        // });
-        // cy.wait(1000)
-        // cy.matchImage();
+        cy.visit('https://digital.gov.bc.ca/policies-standards/', {
+            onBeforeLoad(win) {
+                // Add a style element to the head of the document
+                const styleElement = win.document.createElement('style');
+                styleElement.innerHTML = 'html { scroll-behavior: auto !important; }';
+                win.document.head.appendChild(styleElement);
+            },
+        });
+        cy.wait(1000)
+        cy.matchImage();
     })
 })
