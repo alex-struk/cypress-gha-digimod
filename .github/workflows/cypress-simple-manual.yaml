@@ -57,4 +57,4 @@ jobs:
           from: Digimod # <user@example.com>
           # Optional plain body:
           body: End-to-end tests failed on digital.gov.bc.ca
-          # attachments: '/home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__/spec.cy.js home page screenshot #0.actual.png'
+          attachments: '/home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__/spec.cy.js home page screenshot #0.actual.png'
