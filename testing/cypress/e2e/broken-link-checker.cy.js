@@ -43,7 +43,7 @@
                         timeout: 30000 // Custom timeout value in milliseconds, e.g., 30 seconds
                     })
                         .then((response) => {
-                            if (response.status !== 200) {
+                            if (response.status !== 200 && response.status !== 401) {
                                 // Add the broken link to the brokenLinks array
                                 brokenLinks.push({ url: url, status: response.status });
                             }
