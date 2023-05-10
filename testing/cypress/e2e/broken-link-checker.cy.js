@@ -3,9 +3,12 @@
     let i = 0;
     let allBrokenLinks = [];
     let currentUrl = {'url':''};
-    urls.every((url) =>  {
+    // urls = ['https://digital.gov.bc.ca/learning/case-studies/energy-mines-digital-trust-pilot/',
+    //         'https://digital.gov.bc.ca/common-components/common-document-generation-service/'];
+
+    urls.every((pageUrl) =>  {
         i++;
-        currentUrl['url'] = url;
+        
         
         // if (i<49)
         //     return true;
@@ -13,10 +16,12 @@
         // url = 'https://wodpress-version-bump.apps.silver.devops.gov.bc.ca/cloud/public-cloud/';
        
         // Define a variable to store broken links
-        it('broken links test for '+url, ()=>{
+        it('broken links test for '+pageUrl, ()=>{
+
+            currentUrl['url'] = pageUrl;
             let brokenLinks = [];
 
-            cy.visit(url);
+            cy.visit(pageUrl);
 
             // Collect all the links on the page
             cy.get('a')
@@ -45,17 +50,17 @@
                     // If it's the last link, check if there are any broken links
                     if (index === $links.length - 1) {
                         if (brokenLinks.length>0){
-                            cy.log('pushing report item: ', JSON.stringify({'page':currentUrl['url'],'brokenLinks':brokenLinks}))
-                            allBrokenLinks.push({'page':currentUrl['url'],'brokenLinks':brokenLinks});
+                            cy.log('pushing report item: ', JSON.stringify({'page':pageUrl,'brokenLinks':brokenLinks}))
+                            allBrokenLinks.push({'page':pageUrl,'brokenLinks':brokenLinks});
                         }
-
+                        cy.wait(100);
                         expect(brokenLinks).to.be.empty;
                     }
                 });
             });
         })
 
-        // if (i>2){
+        // if (i>3){
         //     return false;
         // }
         return true;
