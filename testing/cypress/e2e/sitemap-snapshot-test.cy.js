@@ -78,7 +78,7 @@ const options = {
                 cy.visit(url);
                 cy.get('.back-to-top', { timeout: 10000 }); // need to wait for this element because it appears after a delay
                 cy.wait(500);
-                
+
                 cy.document().then((doc) => {
                     const bodyContent = doc.body.innerHTML;
                     const beautifiedHtml = beautify(bodyContent, options);
@@ -102,9 +102,9 @@ const options = {
                 // });
             });
         })
-        if (i>2){
-            return false;
-        }
+        // if (i>2){
+        //     return false;
+        // }
         return true;
     })
 }

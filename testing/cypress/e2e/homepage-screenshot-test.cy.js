@@ -15,8 +15,6 @@ describe('spec.cy.js', () =>{
         cy.get('.back-to-top', { timeout: 10000 });
         
         cy.document().then((doc) => {
-
-            
             cy.wait(100)
             const backToTop = doc.querySelectorAll('.back-to-top');
             backToTop.forEach((element) => element.remove());

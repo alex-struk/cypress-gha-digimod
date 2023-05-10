@@ -3,8 +3,8 @@
     let i = 0;
     let allBrokenLinks = [];
     let currentUrl = {'url':''};
-    urls = ['https://digital.gov.bc.ca/learning/',
-            'https://digital.gov.bc.ca/contact/'];
+    // urls = ['https://digital.gov.bc.ca/learning/',
+    //         'https://digital.gov.bc.ca/contact/'];
 
     urls.every((pageUrl) =>  {
         i++;

@@ -51,7 +51,7 @@ jobs:
           # Optional (recommended) mail server password:
           password: ${{secrets.MAIL_PASSWORD}}
           # Required mail subject:
-          subject: missing pages are not all returning 200/3xx
+          subject: Missing pages are not all returning 200/3xx
           # Required recipients' addresses:
           to: strukalex@gmail.com
           # Required sender full name (address can be skipped):

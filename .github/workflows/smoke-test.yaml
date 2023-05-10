@@ -51,7 +51,7 @@ jobs:
           # Optional (recommended) mail server password:
           password: ${{secrets.MAIL_PASSWORD}}
           # Required mail subject:
-          subject: Github Actions job result
+          subject: digital.gov.bc.ca smoke tests failed
           # Required recipients' addresses:
           to: strukalex@gmail.com
           # Required sender full name (address can be skipped):
