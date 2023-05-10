@@ -44,8 +44,10 @@
 
                     // If it's the last link, check if there are any broken links
                     if (index === $links.length - 1) {
-                        if (brokenLinks.length>0)
-                            allBrokenLinks.push({'page':url,'brokenLinks':brokenLinks});
+                        if (brokenLinks.length>0){
+                            cy.log('pushing report item: ', JSON.stringify({'page':currentUrl['url'],'brokenLinks':brokenLinks}))
+                            allBrokenLinks.push({'page':currentUrl['url'],'brokenLinks':brokenLinks});
+                        }
 
                         expect(brokenLinks).to.be.empty;
                     }
