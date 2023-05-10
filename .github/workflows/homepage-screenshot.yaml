@@ -4,7 +4,7 @@ name: homepage-screenshot
 on:
   workflow_dispatch:
   repository_dispatch:
-  push:
+  # push:
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: '10 * * * *'
@@ -27,7 +27,7 @@ jobs:
           install-command: npm ci -f
           working-directory: testing
           browser: firefox
-          spec: cypress/e2e/homepage-screenshot.cy.js
+          spec: cypress/e2e/homepage-screenshot-test.cy.js
       - name: Send email
         if: failure()
         uses: dawidd6/action-send-mail@v3.7.1
