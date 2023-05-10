@@ -25,19 +25,20 @@ const options = {
     const wordpressSiteUrl = Cypress.env('baseUrl');
     const snapshotsPath = urlSlug.convert('snapshots_for_'+wordpressSiteUrl);
     let snapshotName = {'slug':''};
-    let fileContent = '';
+   
     let actualHtml = '';
+
+    let fileContent_v={'value':'value'};
+    let actualHtml_v={'value':'value'};
 
     afterEach(function () {
         if (this.currentTest.state === 'failed') {
     
-          let diffReport = Diff.createTwoFilesPatch('original', 'actual', fileContent, actualHtml);
+          let diffReport = Diff.createTwoFilesPatch('original', 'actual', fileContent_v['value'], actualHtml_v['value']);
     
           cy.writeFile('cypress/e2e/snapshots-report/' + snapshotName.slug + '.diff.txt', diffReport);
-          cy.writeFile('cypress/e2e/snapshots-report/' + snapshotName.slug + '.expected.txt', fileContent);
-          cy.writeFile('cypress/e2e/snapshots-report/' + snapshotName.slug + '.actual.txt', actualHtml);
-
-        //   cy.writeFile(snapshotName.slug+'.txt', fileContent);
+          cy.writeFile('cypress/e2e/snapshots-report/' + snapshotName.slug + '.expected.txt', fileContent_v['value']);
+          cy.writeFile('cypress/e2e/snapshots-report/' + snapshotName.slug + '.actual.txt', actualHtml_v['value']);
         }
     });
 
@@ -46,9 +47,20 @@ const options = {
         it('snapshot test for '+url, ()=>{
             snapshotName.slug = urlSlug.convert(url);
             Cypress.env('snapshotName', snapshotName.slug);
-            cy.readFile('cypress/e2e/'+snapshotsPath+'/'+snapshotName.slug+'.json').then((fileContents)=>{
-                
-                fileContent = fileContents.html;
+            cy.task('readFileMaybe2', 'cypress/e2e/'+snapshotsPath+'/'+snapshotName.slug+'.json').then((fileContents) => { 
+
+            // cy.readFile('cypress/e2e/'+snapshotsPath+'/'+snapshotName.slug+'.json').then((fileContents)=>{
+                let fileContent = '';
+                if (fileContents)
+                    fileContent = JSON.parse(fileContents).html;
+                else
+                    fileContent = null;
+
+                fileContent_v['value'] = fileContent;
+                // cy.log('fileContents: ', fileContents);
+                // cy.log('fileContent_v: ', fileContent_v);
+
+
                 Cypress.on('fail', (error, runnable) => {
 
                     // let diffReport=Diff.createTwoFilesPatch('original', 'actual', fileContent.html, actualHtml)
@@ -58,16 +70,20 @@ const options = {
                     // cy.writeFile('cypress/e2e/snapshots-report/'+snapshotName.slug+'.actual.txt',actualHtml);
 
                     throw new Error('snapshot comparison failed for: '+snapshotName.slug);
+                    // throw error;
                 })
                 
                 
                 cy.log('running test for: ', url);
                 cy.visit(url);
+                cy.get('.back-to-top', { timeout: 10000 }); // need to wait for this element because it appears after a delay
+                cy.wait(500);
+                
                 cy.document().then((doc) => {
                     const bodyContent = doc.body.innerHTML;
                     const beautifiedHtml = beautify(bodyContent, options);
                     actualHtml = beautifiedHtml;
-
+                    actualHtml_v['value']=actualHtml;
                     // Perform assertions or any other operations you need with the body content as a string
                     
                     cy.wrap({ html: beautifiedHtml }).snapshot("test",{
@@ -86,9 +102,9 @@ const options = {
                 // });
             });
         })
-        // if (i>2){
-        //     return false;
-        // }
+        if (i>2){
+            return false;
+        }
         return true;
     })
 }

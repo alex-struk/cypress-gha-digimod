@@ -2,3 +2,96 @@ Page: https://digital.gov.bc.ca/learning/case-studies/energy-mines-digital-trust
 Broken Links:
   URL: https://digital.gov.bc.ca/digital-trust/tools/traction/
   Status: 404
+
+
+Page: https://digital.gov.bc.ca/common-components/active-directory-federation-services/
+Broken Links:
+  URL: https://ssbc-client.gov.bc.ca/order/iStoreReferenceGuide.pdf
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/order/howtoorder.htm
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/order/istore.htm
+  Status: 401
+
+
+Page: https://digital.gov.bc.ca/common-components/azure-active-directory/
+Broken Links:
+  URL: https://ssbc-client.gov.bc.ca/order/iStoreReferenceGuide.pdf
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/order/howtoorder.htm
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/order/istore.htm
+  Status: 401
+
+
+Page: https://digital.gov.bc.ca/guidance/forms-and-surveys/
+Broken Links:
+  URL: https://www2.gov.bc.ca/gov/content/bc-procurement-resources/sell-to-government/understand-government-processes/ministry-contacts
+  Status: 404
+
+  URL: https://digital.gov.bc.ca/guidance/how-to-acquire-low-touch-saas/
+  Status: 404
+
+
+Page: https://digital.gov.bc.ca/policies-standards/digital-code-of-practice/
+Broken Links:
+  URL: https://digital.gov.bc.ca/bc-common-components/
+  Status: 404
+
+  URL: https://digital.gov.bc.ca/bc-common-components/
+  Status: 404
+
+  URL: https://digital.gov.bc.ca/guidance/how-to-acquire-low-touch-saas/
+  Status: 404
+
+
+Page: https://digital.gov.bc.ca/guidance/steps-for-digital-service-delivery/
+Broken Links:
+  URL: https://digital.gov.bc.ca/bc-common-components/
+  Status: 404
+
+
+Page: https://digital.gov.bc.ca/guidance/acquire-saas/
+Broken Links:
+  URL: https://www2.gov.bc.ca/gov/content/bc-procurement-resources/sell-to-government/understand-government-processes/ministry-contacts
+  Status: 404
+
+  URL: https://www2.gov.bc.ca/gov/content/bc-procurement-resources/sell-to-government/understand-government-processes/ministry-contacts
+  Status: 404
+
+
+Page: https://digital.gov.bc.ca/common-components/cms-forms/
+Broken Links:
+  URL: https://apps.itsm.gov.bc.ca/jira/servicedesk/customer/portal/9/group/112
+  Status: 401
+
+  URL: https://apps.itsm.gov.bc.ca/jira/servicedesk/customer/portal/9/group/112
+  Status: 401
+
+
+Page: https://digital.gov.bc.ca/common-components/secure-file-transfer-service/
+Broken Links:
+  URL: https://ssbc-client.gov.bc.ca/chgmgmt/default.htm
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/chgmgmt/change_mgmt.htm
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/services/securefiletransfer/order.htm
+  Status: 401
+
+
+Page: https://digital.gov.bc.ca/common-components/siteminder-sso/
+Broken Links:
+  URL: https://ssbc-client.gov.bc.ca/order/istore.htm
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/order/iStoreReferenceGuide.pdf
+  Status: 401
+
+  URL: https://ssbc-client.gov.bc.ca/order/howtoorder.htm
+  Status: 401

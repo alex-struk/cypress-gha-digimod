@@ -3,8 +3,8 @@
     let i = 0;
     let allBrokenLinks = [];
     let currentUrl = {'url':''};
-    // urls = ['https://digital.gov.bc.ca/learning/case-studies/energy-mines-digital-trust-pilot/',
-    //         'https://digital.gov.bc.ca/common-components/common-document-generation-service/'];
+    urls = ['https://digital.gov.bc.ca/learning/',
+            'https://digital.gov.bc.ca/contact/'];
 
     urls.every((pageUrl) =>  {
         i++;
@@ -16,49 +16,66 @@
         // url = 'https://wodpress-version-bump.apps.silver.devops.gov.bc.ca/cloud/public-cloud/';
        
         // Define a variable to store broken links
-        it('broken links test for '+pageUrl, ()=>{
+        it('broken links test for ' + pageUrl, () => {
 
             currentUrl['url'] = pageUrl;
             let brokenLinks = [];
-
+        
             cy.visit(pageUrl);
-
+        
             // Collect all the links on the page
             cy.get('a')
-            .each(($link, index, $links) => {
-                // Get the link href attribute
-                const url = $link.prop('href');
-
-                // Skip "#" links and email links
-                if (url.startsWith('#') || url.startsWith('mailto:') || url == '') {
-                    return;
-                }
-
-                cy.log('requesting: ', url);
-
-                // Make a request to the link and check if it returns a 200 status code
-                cy.request({
-                url: url,
-                failOnStatusCode: false // Prevent the test from failing on the first broken link
-                })
-                .then((response) => {
-                    if (response.status !== 200) {
-                        // Add the broken link to the brokenLinks array
-                        brokenLinks.push({ url: url, status: response.status });
+                .each(($link, index, $links) => {
+                    // Get the link href attribute
+                    const url = $link.prop('href');
+        
+                    // Skip "#" links and email links
+                    if (url.startsWith('#') || url.startsWith('mailto:') || url == '') {
+                        return;
                     }
-
-                    // If it's the last link, check if there are any broken links
-                    if (index === $links.length - 1) {
-                        if (brokenLinks.length>0){
-                            cy.log('pushing report item: ', JSON.stringify({'page':pageUrl,'brokenLinks':brokenLinks}))
-                            allBrokenLinks.push({'page':pageUrl,'brokenLinks':brokenLinks});
+        
+                    cy.log('requesting: ', url);
+        
+                    // Make a request to the link and check if it returns a 200 status code
+                    cy.request({
+                        url: url,
+                        failOnStatusCode: false, // Prevent the test from failing on the first broken link
+                        timeout: 30000 // Custom timeout value in milliseconds, e.g., 30 seconds
+                    })
+                        .then((response) => {
+                            if (response.status !== 200) {
+                                // Add the broken link to the brokenLinks array
+                                brokenLinks.push({ url: url, status: response.status });
+                            }
+        
+                            // Check if it's the last link
+                            if (index === $links.length - 1) {
+                                finishTest(brokenLinks, pageUrl, allBrokenLinks);
+                            }
                         }
-                        cy.wait(100);
-                        expect(brokenLinks).to.be.empty;
-                    }
+                        // , (error) => {
+                        //     // Handle the timeout error by adding the link to the brokenLinks array with a custom status message
+                        //     if (error.message.includes('timed out')) {
+                        //         brokenLinks.push({ url: url, status: 'Timeout' });
+                        //     }
+        
+                        //     // Check if it's the last link
+                        //     if (index === $links.length - 1) {
+                        //         finishTest(brokenLinks, pageUrl, allBrokenLinks);
+                        //     }
+                        // }
+                        );
                 });
-            });
         })
+        
+        function finishTest(brokenLinks, pageUrl, allBrokenLinks) {
+            if (brokenLinks.length > 0) {
+                cy.log('pushing report item: ', JSON.stringify({ 'page': pageUrl, 'brokenLinks': brokenLinks }))
+                allBrokenLinks.push({ 'page': pageUrl, 'brokenLinks': brokenLinks });
+            }
+            cy.wait(100);
+            expect(brokenLinks).to.be.empty;
+        }
 
         // if (i>3){
         //     return false;

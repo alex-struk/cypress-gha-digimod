@@ -20,6 +20,16 @@ module.exports = defineConfig({
   e2e: {
     // supportFile:false,
     async setupNodeEvents(on, config) {
+      on('task', {
+        readFileMaybe2(filename) {
+          if (fs.existsSync(filename)) {
+            return fs.readFileSync(filename, 'utf8')
+          }
+
+          return null
+        },
+      })
+
       // let wordpressSiteUrl ='https://digital-dev.apps.silver.devops.gov.bc.ca/';
       let wordpressSiteUrl ='https://digital.gov.bc.ca/';
       // let wordpressSiteUrl ='https://wodpress-version-bump.apps.silver.devops.gov.bc.ca/';
