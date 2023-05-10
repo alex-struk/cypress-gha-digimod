@@ -5,16 +5,11 @@
         i++;
         cy.log('running test for: ', url);
        
-        cy.request({url: url, failOnStatusCode: false}).its('status').should('not.equal', 404)
-
-        // cy.request(url).its('body', {log: false}).then(text => {
-        //     cy.wrap({ html: text }).snapshot("test",{
-        //             snapshotName: urlSlug.convert(url),
-        //             snapshotPath: 'cypress/snapshots',
-        //             json: true                           
-        //         });
-        // });
-
+         cy.request({ url: url, failOnStatusCode: false }).its('status').should((status) => {
+            expect(status).to.satisfy((code) => {
+                return code === 200 || (code >= 300 && code < 400);
+            }, `Expected status to be 200 or 3xx, but got ${status}`);
+        });
         return true;
     });
 }

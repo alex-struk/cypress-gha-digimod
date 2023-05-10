@@ -20,32 +20,18 @@ module.exports = defineConfig({
   e2e: {
     // supportFile:false,
     async setupNodeEvents(on, config) {
-      // let wordpressSiteUrl ='https://digital.gov.bc.ca/';
-      let wordpressSiteUrl ='https://wodpress-version-bump.apps.silver.devops.gov.bc.ca/';
+      let wordpressSiteUrl ='https://digital.gov.bc.ca/';
+      // let wordpressSiteUrl ='https://wodpress-version-bump.apps.silver.devops.gov.bc.ca/';
 
       let urlsFilePath = './urls_for_'+urlSlug.convert(wordpressSiteUrl)+'.json';
-      config.env.sitemapUrls = await getUpdatedUrls(wordpressSiteUrl,urlsFilePath);
+      let urls = await getUpdatedUrls(wordpressSiteUrl,urlsFilePath);
+      config.env.sitemapUrls = urls.newUrls;
+      config.env.missingUrls = urls.missingUrls;
       config.env.baseUrl = wordpressSiteUrl;
       // require("@datashard/snapshot").tasks(on, config);
       require("./lib/snapshot/src").tasks(on, config);
 
       initPlugin(on, config);
-
-      // filesystem io needs to happen via plugin
-      // on('task', {
-      //   readFile: (filePath) => {
-      //     return fsHandler.readFile(filePath);
-      //   },
-    
-      //   writeFile: ({ filePath, content }) => {
-      //     fsHandler.writeFile(filePath, content);
-      //     return null;
-      //   },
-
-      //   existsSync: (filePath) =>{
-      //     return fsHandler.existsSync(filePath);
-      //   }
-      // });
 
       return config;
     }
@@ -130,5 +116,5 @@ async function getUpdatedUrls(wordpressSiteUrl,urlsFilePath){
     // globalVars.newUrls = newUrls;
     // globalVars.missingUrls = missingUrls;
     // cy.log('commands.js', globalVars.newUrls);
-    return newUrls;
+    return {newUrls, missingUrls};
 }
