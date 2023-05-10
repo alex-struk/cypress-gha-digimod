@@ -15,7 +15,7 @@ describe('spec.cy.js', () =>{
         
         cy.document().then((doc) => {
 
-            
+            cy.viewport(1440, 900);
             cy.wait(100)
             const backToTop = doc.querySelectorAll('.back-to-top');
             backToTop.forEach((element) => element.remove());

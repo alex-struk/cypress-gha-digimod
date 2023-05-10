@@ -20,8 +20,8 @@ module.exports = defineConfig({
   e2e: {
     // supportFile:false,
     async setupNodeEvents(on, config) {
+      // let wordpressSiteUrl ='https://digital-dev.apps.silver.devops.gov.bc.ca/';
       let wordpressSiteUrl ='https://digital.gov.bc.ca/';
-      // let wordpressSiteUrl ='https://digital.gov.bc.ca/';
       // let wordpressSiteUrl ='https://wodpress-version-bump.apps.silver.devops.gov.bc.ca/';
 
       let urlsFilePath = './urls_for_'+urlSlug.convert(wordpressSiteUrl)+'.json';

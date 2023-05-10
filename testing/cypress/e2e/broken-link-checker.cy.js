@@ -25,9 +25,11 @@
                 const url = $link.prop('href');
 
                 // Skip "#" links and email links
-                if (url.startsWith('#') || url.startsWith('mailto:')) {
+                if (url.startsWith('#') || url.startsWith('mailto:') || url == '') {
                     return;
                 }
+
+                cy.log('requesting: ', url);
 
                 // Make a request to the link and check if it returns a 200 status code
                 cy.request({
