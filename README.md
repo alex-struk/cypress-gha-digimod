@@ -1,5 +1,19 @@
 This repository contains end-to-end tests for digital.gov.bc.ca using cypress. Tests include GitHub actions as well as tools that can be run manually.
 
+## Contents
+- [Installation and Configuration](#installation-and-configuration)
+- [GitHub Actions](#github-actions)
+  * [Broken Link Checker (broken-link-checker.yaml)](#broken-link-checker--broken-link-checkeryaml-)
+  * [Missing Pages (missing-pages.yaml)](#missing-pages--missing-pagesyaml-)
+  * [Smoke Test (smoke-test.yaml)](#smoke-test--smoke-testyaml-)
+  * [Home Page Screenshot (homepage-screenshot.yaml)](#home-page-screenshot--homepage-screenshotyaml-)
+- [Tools](#tools)
+  * [Screenshot tests](#screenshot-tests)
+  * [Snapshot tests](#snapshot-tests)
+  * [Notes](#notes)
+  * [Broken Links](#broken-links)
+  * [Missing Pages](#missing-pages)
+
 ## Installation and Configuration
 Clone the repository, navigate to `testing` directory and run `npm i`.
 
