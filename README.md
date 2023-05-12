@@ -94,11 +94,6 @@ And for mobile:
 
 ``` npx cypress run --spec "cypress/e2e/sitemap-snapshot-test-mobile.cy.js" --browser firefox ```
 
-### Notes
-- The snapshot plugin for Cypress library had undergone a transition into a new project and at the date of construction of this test set the plugin was not in a stable configuration. To address issues with the plugin, it has been cloned locally and modified to address an issue where comparison between actual and expected snapshots was not working properly (crashing with recursion limit).
-
-**Todo:** Once the plugin is stable (https://github.com/datashard/snapshot), remove `lib/snapshot` folder and re-adjust dependencies to point to node_modules.
-
 ### Broken Links
 In addition to running broken links via GitHub actions, they can also be run locally via cypress. To run broken link checker locally, run:
 
@@ -112,3 +107,8 @@ To check if any of the pages that have been deleted are now set to redirect to a
 ``` npx cypress run --spec "cypress/e2e/missing-pages.cy.js" --browser firefox ```
 
 There is no report generated, review test results to determine which pages need to be setup for redirects. If a page errors, and a 404 response is acceptable, manually remove it from `urls_for_SITE-NAME.json` file located in the root of the repository.
+
+## Notes
+- The snapshot plugin for Cypress library had undergone a transition into a new project and at the date of construction of this test set the plugin was not in a stable configuration. To address issues with the plugin, it has been cloned locally and modified to address an issue where comparison between actual and expected snapshots was not working properly (crashing with recursion limit).
+
+**Todo:** Once the plugin is stable (https://github.com/datashard/snapshot), remove `lib/snapshot` folder and re-adjust dependencies to point to node_modules.
