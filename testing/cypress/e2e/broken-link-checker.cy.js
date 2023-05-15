@@ -56,7 +56,7 @@
                     .then((response) => {
                         if (response.status !== 200 && response.status !== 401) {
                             cy.log('logged broken link');
-                            brokenLinks.push({ text: $link.text(), url: url, status: response.status });
+                            brokenLinks.push({ text: $link.text, url: url, status: response.status });
                         } else {
                             okLinks.push(url)
                         }
