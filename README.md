@@ -65,11 +65,11 @@ These tests are useful for tracking site-wide visual regressions that may occur 
 
 To run screenshot tests, use the following command:
 
-``` npx cypress run --spec "cypress/e2e/screenshot-tests.cy.js" --browser firefox ```
+``` npx cypress run --spec "cypress/e2e/screenshot-tests.cy.js" --browser firefox --env url=https://digital.gov.bc.ca```
 
 For mobile screenshots use:
 
-``` npx cypress run --spec "cypress/e2e/screenshot-tests-mobile.cy.js" --browser firefox ```
+``` npx cypress run --spec "cypress/e2e/screenshot-tests-mobile.cy.js" --browser firefox --env url=https://digital.gov.bc.ca```
 
 For a more convenient interface, run the tests through Cypress UI by running:
 
@@ -88,23 +88,23 @@ These tests are useful for comparing the state of the site before/after system-w
 
 To run snapshot tests, use the following command:
 
-``` npx cypress run --spec "cypress/e2e/sitemap-snapshot-test.cy.js" --browser firefox ```
+``` npx cypress run --spec "cypress/e2e/sitemap-snapshot-test.cy.js" --browser firefox --env url=https://digital.gov.bc.ca```
 
 And for mobile:
 
-``` npx cypress run --spec "cypress/e2e/sitemap-snapshot-test-mobile.cy.js" --browser firefox ```
+``` npx cypress run --spec "cypress/e2e/sitemap-snapshot-test-mobile.cy.js" --browser firefox --env url=https://digital.gov.bc.ca```
 
 ### Broken Links
 In addition to running broken links via GitHub actions, they can also be run locally via cypress. To run broken link checker locally, run:
 
-``` npx cypress run --spec "cypress/e2e/broken-link-checker.cy.js" --browser firefox ```
+``` npx cypress run --spec "cypress/e2e/broken-link-checker.cy.js" --browser firefox --env url=https://digital.gov.bc.ca```
 
 The report will be generated into `cypress/e2e/broken-links-report/report.txt` file.
 
 ### Missing Pages
 To check if any of the pages that have been deleted are now set to redirect to an alternative resource, run:
 
-``` npx cypress run --spec "cypress/e2e/missing-pages.cy.js" --browser firefox ```
+``` npx cypress run --spec "cypress/e2e/missing-pages.cy.js" --browser firefox --env url=https://digital.gov.bc.ca```
 
 There is no report generated, review test results to determine which pages need to be setup for redirects. If a page errors, and a 404 response is acceptable, manually remove it from `urls_for_SITE-NAME.json` file located in the root of the repository.
 
