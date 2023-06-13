@@ -1,61 +1,71 @@
-# # Manual started workflow
-# # This is the simplest for of running the Cypress tests in Github actions
-# name: homepage-screenshot
-# on:
-#   workflow_dispatch:
-#   repository_dispatch:
-#   # push:
-#   schedule:
-#     # * is a special character in YAML so you have to quote this string
-#     - cron: '10 * * * *'
-# jobs:
-#   cypress-run:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v3
-#       - name: Front page smoke tests
-#         uses: cypress-io/github-action@v5
-#         id: homepage-screenshot
-#         # Continue the build in case of an error, as we need to set the
-#         # commit status in the next step, both in case of success and failure
-#         continue-on-error: false
-#         with:
-#         # No recording of results in the cloud
-#           record: false
-#         # We need to force the install due to version checking  
-#           install-command: npm ci -f
-#           working-directory: testing
-#           browser: firefox
-#           spec: cypress/e2e/homepage-screenshot-test.cy.js
-#       - name: Send email
-#         if: failure()
-#         uses: dawidd6/action-send-mail@v3.7.1
-#         with:
-#           # Specify connection via URL (replaces server_address, server_port, secure,
-#           # username and password)
-#           #
-#           # Format:
-#           #
-#           #  * smtp://user:password@server:port
-#           #  * smtp+starttls://user:password@server:port
-#           # connection_url: ${{secrets.MAIL_CONNECTION}}
-#           # Required mail server address if not connection_url:
-#           server_address: smtp.gmail.com
-#           # Server port, default 25:
-#           server_port: 465
-#           # Optional whether this connection use TLS (default is true if server_port is 465)
-#           secure: true
-#           # Optional (recommended) mail server username:
-#           username: ${{secrets.MAIL_USERNAME}}
-#           # Optional (recommended) mail server password:
-#           password: ${{secrets.MAIL_PASSWORD}}
-#           # Required mail subject:
-#           subject: digital.gov.bc.ca homepage changed
-#           # Required recipients' addresses:
-#           to: strukalex@gmail.com
-#           # Required sender full name (address can be skipped):
-#           from: Digimod # <user@example.com>
-#           # Optional plain body:
-#           body: End-to-end tests failed on digital.gov.bc.ca
-#           attachments: '/home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__/homepage #0.diff.png'
+# Manual started workflow
+# This is the simplest for of running the Cypress tests in Github actions
+name: homepage-screenshot
+on:
+  workflow_dispatch:
+  # repository_dispatch:
+  # # push:
+  # schedule:
+  #   # * is a special character in YAML so you have to quote this string
+  #   - cron: '10 * * * *'
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Front page smoke tests
+        uses: cypress-io/github-action@v5
+        id: homepage-screenshot
+        # Continue the build in case of an error, as we need to set the
+        # commit status in the next step, both in case of success and failure
+        continue-on-error: false
+        with:
+        # No recording of results in the cloud
+          record: false
+        # We need to force the install due to version checking  
+          install-command: npm ci -f
+          working-directory: testing
+          browser: firefox
+          spec: cypress/e2e/homepage-screenshot-test.cy.js
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        # add the line below to store screenshots only on failures
+        # if: failure()
+        with:
+          name: cypress-screenshots
+          path: /testing/cypress/e2e/__image_snapshots__
+          if-no-files-found: error # 'warn' or 'error' are also available, defaults to `warn`, also `ignore`
+       
+
+      # - name: Send email
+      #   if: failure()
+      #   uses: dawidd6/action-send-mail@v3.7.1
+      #   with:
+      #     # Specify connection via URL (replaces server_address, server_port, secure,
+      #     # username and password)
+      #     #
+      #     # Format:
+      #     #
+      #     #  * smtp://user:password@server:port
+      #     #  * smtp+starttls://user:password@server:port
+      #     # connection_url: ${{secrets.MAIL_CONNECTION}}
+      #     # Required mail server address if not connection_url:
+      #     server_address: smtp.gmail.com
+      #     # Server port, default 25:
+      #     server_port: 465
+      #     # Optional whether this connection use TLS (default is true if server_port is 465)
+      #     secure: true
+      #     # Optional (recommended) mail server username:
+      #     username: ${{secrets.MAIL_USERNAME}}
+      #     # Optional (recommended) mail server password:
+      #     password: ${{secrets.MAIL_PASSWORD}}
+      #     # Required mail subject:
+      #     subject: digital.gov.bc.ca homepage changed
+      #     # Required recipients' addresses:
+      #     to: strukalex@gmail.com
+      #     # Required sender full name (address can be skipped):
+      #     from: Digimod # <user@example.com>
+      #     # Optional plain body:
+      #     body: End-to-end tests failed on digital.gov.bc.ca
+      #     attachments: '/home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__/homepage #0.diff.png'
