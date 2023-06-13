@@ -25,8 +25,8 @@ jobs:
       - shell: bash
         run: |
           cd /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
-          mv cypress-snapshots/* .
-          rmdir cypress-snapshots
+          mv cypress-screenshots/* .
+          rmdir cypress-screenshots
       - name: Front page smoke tests
         uses: cypress-io/github-action@v5
         id: homepage-screenshot
