@@ -32,7 +32,7 @@ jobs:
         id: homepage-screenshot
         # Continue the build in case of an error, as we need to set the
         # commit status in the next step, both in case of success and failure
-        continue-on-error: false
+        continue-on-error: true
         with:
         # No recording of results in the cloud
           record: false
@@ -44,12 +44,13 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         # add the line below to store screenshots only on failures
-        # if: failure()
+        if: failure()
         with:
           name: cypress-screenshots-failed
           path: /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
           if-no-files-found: error # 'warn' or 'error' are also available, defaults to `warn`, also `ignore`
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
+        if: failure()
         with:
           name: cypress-screenshots-failed
