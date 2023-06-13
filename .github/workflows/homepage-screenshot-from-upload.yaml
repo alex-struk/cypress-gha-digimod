@@ -41,13 +41,15 @@ jobs:
           working-directory: testing
           browser: firefox
           spec: cypress/e2e/homepage-screenshot-test.cy.js
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v3
-      #   # add the line below to store screenshots only on failures
-      #   # if: failure()
-      #   with:
-      #     name: cypress-screenshots
-      #     path: /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
-      #     if-no-files-found: error # 'warn' or 'error' are also available, defaults to `warn`, also `ignore`
-      # - name: Download all workflow run artifacts
-      #   uses: actions/download-artifact@v3      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        # add the line below to store screenshots only on failures
+        # if: failure()
+        with:
+          name: cypress-screenshots-failed
+          path: /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
+          if-no-files-found: error # 'warn' or 'error' are also available, defaults to `warn`, also `ignore`
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: cypress-screenshots-failed
