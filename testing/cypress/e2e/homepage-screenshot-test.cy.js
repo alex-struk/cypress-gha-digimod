@@ -1,9 +1,11 @@
 describe('spec.cy.js', () =>{
     it('home page screenshot', () =>{
         cy.viewport(1280, 900);
-
+        let url = 'https://digital.gov.bc.ca/';
+        url = 'https://digital-dev.apps.silver.devops.gov.bc.ca/';
+        
         // cy.visit('https://github.com/bcgov/automated-testing/blob/main/.github/workflows/cypress-complex-auto.yaml');
-        cy.visit('https://digital.gov.bc.ca/', {
+        cy.visit(url, {
             onBeforeLoad(win) {
                 // Add a style element to the head of the document
                 const styleElement = win.document.createElement('style');
