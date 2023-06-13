@@ -22,6 +22,11 @@ jobs:
           workflow: homepage-screenshot.yaml
            # Optional, a directory where to extract artifact(s), defaults to the current directory
           path: /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
+      - shell: bash
+        run: |
+          cd /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
+          mv cypress-snapshots/* .
+          rmdir cypress-snapshots
       - name: Front page smoke tests
         uses: cypress-io/github-action@v5
         id: homepage-screenshot
@@ -36,13 +41,13 @@ jobs:
           working-directory: testing
           browser: firefox
           spec: cypress/e2e/homepage-screenshot-test.cy.js
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        # add the line below to store screenshots only on failures
-        # if: failure()
-        with:
-          name: cypress-screenshots
-          path: /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
-          if-no-files-found: error # 'warn' or 'error' are also available, defaults to `warn`, also `ignore`
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v3      
+      # - name: Upload artifacts
+      #   uses: actions/upload-artifact@v3
+      #   # add the line below to store screenshots only on failures
+      #   # if: failure()
+      #   with:
+      #     name: cypress-screenshots
+      #     path: /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
+      #     if-no-files-found: error # 'warn' or 'error' are also available, defaults to `warn`, also `ignore`
+      # - name: Download all workflow run artifacts
+      #   uses: actions/download-artifact@v3      
