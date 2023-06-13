@@ -34,7 +34,7 @@ jobs:
         # if: failure()
         with:
           name: cypress-screenshots
-          path: /testing/cypress/e2e/__image_snapshots__
+          path: /home/runner/work/cypress-gha-digimod/cypress-gha-digimod/testing/cypress/e2e/__image_snapshots__
           if-no-files-found: error # 'warn' or 'error' are also available, defaults to `warn`, also `ignore`
        
 
